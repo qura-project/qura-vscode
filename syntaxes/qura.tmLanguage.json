@@ -1,0 +1,124 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "QuRA",
+  "scopeName": "source.qura",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#keywords" },
+    { "include": "#literals" },
+    { "include": "#types" },
+    { "include": "#definition-names" },
+    { "include": "#modules" },
+    { "include": "#operators" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-dash.qura",
+          "match": "--.*$"
+        },
+        {
+          "name": "comment.block.qura",
+          "begin": "\\{-",
+          "end": "-\\}",
+          "patterns": [{ "include": "#block-comment-nested" }]
+        }
+      ]
+    },
+    "block-comment-nested": {
+      "name": "comment.block.qura",
+      "begin": "\\{-",
+      "end": "-\\}",
+      "patterns": [{ "include": "#block-comment-nested" }]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.qura",
+          "match": "\\b(module|where|import|as|let|in|if|then|else)\\b"
+        },
+        {
+          "name": "keyword.other.prefix.qura",
+          "match": "\\b(apply|not|lift|force|box)\\b"
+        }
+      ]
+    },
+    "literals": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.qura",
+          "match": "\\b(True|False)\\b"
+        },
+        {
+          "name": "support.function.quantum.qura",
+          "match": "\\b(QInit|QDiscard|CInit|CDiscard|Meas|Hadamard|PauliX|PauliY|PauliZ|T|R|RInv|CNot|CZ|CR|CRInv|CCNot|CCZ|Toffoli)\\b"
+        },
+        {
+          "name": "constant.numeric.natural.qura",
+          "match": "\\b[0-9]+\\b"
+        },
+        {
+          "name": "variable.language.wildcard.qura",
+          "match": "(?<![A-Za-z0-9_])_(?![A-Za-z0-9_])"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "support.type.qura",
+          "match": "\\b(Nat|Bool|Bit|Qubit|Circ)\\b"
+        }
+      ]
+    },
+    "definition-names": {
+      "patterns": [
+        {
+          "name": "entity.name.function.qura",
+          "match": "^(?!(?:module|where|import|as|let|in|if|then|else|apply|not|lift|force|box)\\b)[a-z][A-Za-z0-9_]*"
+        }
+      ]
+    },
+    "modules": {
+      "patterns": [
+        {
+          "name": "entity.name.namespace.qura",
+          "match": "\\b[A-Z][A-Za-z0-9_]*\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "storage.type.function.lambda.qura",
+          "match": "\\\\"
+        },
+        {
+          "name": "keyword.operator.arrow.qura",
+          "match": "->"
+        },
+        {
+          "name": "keyword.operator.strict.qura",
+          "match": "!"
+        },
+        {
+          "name": "keyword.operator.qura",
+          "match": "<=|>=|==|/=|&&|\\|\\||[-+*/<>$=]"
+        },
+        {
+          "name": "punctuation.separator.annotation.qura",
+          "match": ":"
+        },
+        {
+          "name": "punctuation.separator.comma.qura",
+          "match": ","
+        },
+        {
+          "name": "punctuation.accessor.dot.qura",
+          "match": "\\."
+        }
+      ]
+    }
+  }
+}

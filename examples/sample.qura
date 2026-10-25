@@ -1,0 +1,12 @@
+{- A sample program {- with a nested comment -} -}
+module Examples.Bell (bell, ghz) where -- trailing comment
+import Data.Circuits as Circ
+
+bell : Circ(Qubit, (Qubit, Qubit))
+bell = box (\q : Qubit. let (a, b) = apply(CNot, (Hadamard q, QInit(False))) in (a, b))
+
+twice : !(Nat -> Nat) -> Nat -> Nat
+twice f x = f $ f x
+
+check : Nat -> Nat -> Bool
+check n _ = if n <= 3 && n /= 0 || True then R(2) else Toffoli --> comment
